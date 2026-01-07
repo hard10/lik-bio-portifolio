@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gabriel – Portfólio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
     body {
         margin: 0;
@@ -11,22 +12,23 @@
         background: #000;
         color: #00ff00;
         overflow-y: auto;
-        height: 100vh;
+        min-height: 100vh;
     }
 
-    /* Fundo com códigos passando */
-    #code-bg {
+    /* FUNDO HACKER COM CÓDIGOS PASSANDO */
+    canvas#matrix {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         z-index: -1;
-        opacity: 0.25;
+        opacity: 0.45;
     }
 
     .container {
-        padding: 40px 20px;
+        padding: 40px 20px 120px;
+        text-align: center;
         animation: fadeIn 1.2s ease-in-out;
     }
 
@@ -36,35 +38,50 @@
     }
 
     .photo {
-        width: 140px;
-        height: 140px;
+        width: 145px;
+        height: 145px;
         border-radius: 50%;
         border: 3px solid #00ff00;
         object-fit: cover;
-        display: block;
-        margin: 0 auto 20px;
-        box-shadow: 0 0 15px #00ff00;
+        margin-bottom: 18px;
+        box-shadow: 0 0 18px #00ff00;
         animation: glowPulse 2s infinite alternate;
+        transition: 0.3s;
     }
 
     @keyframes glowPulse {
         from { box-shadow: 0 0 10px #00ff00; }
-        to { box-shadow: 0 0 25px #00ff00, 0 0 40px #00aa00; }
+        to { box-shadow: 0 0 28px #00ff00, 0 0 50px #00aa00; }
     }
 
-    h1, h2 {
-        text-align: center;
-        text-shadow: 0 0 8px #00ff00;
+    h1 {
+        color: white;
+        font-size: 32px;
+        margin-bottom: 6px;
+        text-shadow: 0 0 12px #00ff00;
+        animation: flicker 1.8s infinite alternate;
+    }
+
+    @keyframes flicker {
+        from { text-shadow: 0 0 6px #00ff00; }
+        to { text-shadow: 0 0 18px #00ff00, 0 0 32px #00aa00; }
+    }
+
+    .subtitle {
+        color: white;
+        font-size: 16px;
+        margin-bottom: 22px;
+        opacity: 0.85;
     }
 
     .card {
-        background: rgba(0, 255, 0, 0.07);
-        padding: 18px;
-        border-radius: 10px;
-        margin: 18px auto;
-        max-width: 420px;
-        border: 1px solid rgba(0, 255, 0, 0.2);
-        animation: slideUp 0.8s ease-out forwards;
+        background: rgba(255,255,255,0.04);
+        padding: 22px;
+        border-radius: 12px;
+        margin: 20px auto;
+        max-width: 460px;
+        border: 1px solid rgba(0,255,0,0.2);
+        animation: slideUp 0.8s ease-out forwards, floatCard 3s infinite alternate ease-in-out;
         opacity: 0;
         transform: translateY(25px);
     }
@@ -73,109 +90,148 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes floatCard {
+        from { transform: translateY(0px); }
+        to { transform: translateY(10px); }
+    }
+
+    .card h2 {
+        color: white;
+        font-size: 22px;
+        margin-bottom: 12px;
+        text-shadow: 0 0 6px rgba(255,255,255,0.2);
+    }
+
+    .card p {
+        font-size: 15px;
+        margin: 6px 0;
+        opacity: 0.9;
+    }
+
+    .skills {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding-top: 8px;
+    }
+
     .skills span {
-        display: inline-block;
-        background: rgba(0, 255, 0, 0.15);
-        padding: 8px 14px;
+        background: rgba(0,255,0,0.15);
+        padding: 9px 16px;
         border-radius: 6px;
-        font-size: 14px;
-        margin: 6px;
+        font-size: 15px;
         font-weight: bold;
+        border: 1px solid rgba(0,255,0,0.3);
+        animation: floatSkill 3s infinite alternate ease-in-out;
         transition: 0.3s;
     }
 
+    @keyframes floatSkill {
+        from { transform: translateY(0px); }
+        to { transform: translateY(8px); }
+    }
+
     .skills span:hover {
-        transform: scale(1.1);
-        background: rgba(0, 255, 0, 0.3);
+        transform: scale(1.12);
+        background: rgba(0,255,0,0.35);
+        box-shadow: 0 0 12px #00ff00;
     }
 
     .btn {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;
-        background: #001100;
+        gap: 9px;
+        background: #001a00;
         color: #00ff00;
-        padding: 12px;
-        border-radius: 6px;
+        padding: 13px;
+        border-radius: 8px;
         font-weight: 700;
-        text-decoration: none;
         margin: 10px auto;
-        width: 90%;
-        max-width: 280px;
+        width: 100%;
+        max-width: 300px;
         box-shadow: 0 0 12px #00ff00;
         transition: 0.2s;
     }
 
     .btn:hover {
-        transform: scale(1.07);
-        box-shadow: 0 0 18px #00ff00, 0 0 30px #00aa00;
+        transform: scale(1.08);
+        box-shadow: 0 0 22px #00ff00, 0 0 38px #00aa00;
+        background: #002200;
     }
 </style>
 </head>
 <body>
 
-<canvas id="code-bg"></canvas>
+<canvas id="matrix"></canvas>
 
 <div class="container">
     <img src="https://github.com/hard10/lik-bio-portifolio/blob/main/bd6a9898-b2f7-47b6-9e8d-4d3ece7bf55e.jpg?raw=true" class="photo" alt="Foto do Gabriel">
 
     <h1>Gabriel da Silva Santos</h1>
-    <p style="text-align:center">Cybersecurity (Red Team) | TI & Web Dev</p>
+    <p class="subtitle">Cybersecurity (Red Team) | TI & Desenvolvimento Web Seguro</p>
 
     <div class="card">
         <h2>Contato</h2>
-        <a class="btn" href="https://wa.me/5511934578305">📱 WhatsApp</a>
-        <a class="btn" href="mailto:gabrielhard011@gmail.com">✉️ Email</a>
-        <a class="btn" href="https://www.linkedin.com/in/gabriel-silva-5b1129373">🔗 LinkedIn</a>
+        <a class="btn" href="https://wa.me/5511934578305">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
+        <a class="btn" href="mailto:gabrielhard011@gmail.com">
+            <i class="fa-solid fa-envelope"></i> E-mail
+        </a>
+        <a class="btn" href="https://www.linkedin.com/in/gabriel-silva-5b1129373">
+            <i class="fa-brands fa-linkedin"></i> LinkedIn
+        </a>
     </div>
 
     <div class="card">
         <h2>Skills</h2>
-        <div class="skills" style="text-align:center">
-            <span>Redes</span>
-            <span>Pentest</span>
+        <div class="skills">
+            <span>Redes de Computadores</span>
+            <span>Pentest (Hacking Ético)</span>
             <span>Linux</span>
             <span>Python</span>
-            <span>HTML</span>
-            <span>CSS</span>
+            <span>HTML5</span>
+            <span>CSS3</span>
             <span>JavaScript</span>
-            <span>Google Cyber</span>
-            <span>Harvard CS50 Cyber</span>
+            <span>Segurança da Informação</span>
+            <span>TryHackMe Labs</span>
+            <span>Google Cyber (2/9 – 92.2 final)</span>
+            <span>Harvard CS50 Cybersecurity (em andamento)</span>
         </div>
     </div>
 
     <div class="card">
         <h2>Formação & Estudos</h2>
-        <p>Faculdade: Segurança da Informação (em andamento)</p>
-        <p>Google Cybersecurity Professional Certificate (2/9) Concluido com notas de 92.2 final</p>
-        <p>CS50’s Introduction to Cybersecurity – Harvard/edX (em andamento)</p>
-        <p>Labs práticos com Linux, redes e ESP32</p>
-        <p>Ingles: Estudo continuo </p>
+        <p><i class="fa-solid fa-building-columns"></i> Análise e Desenvolvimento de Software (Faculdade – em andamento)</p>
+        <p><i class="fa-brands fa-google"></i> Google Cybersecurity Professional Certificate (2/9 – 92.2 final)</p>
+        <p><i class="fa-solid fa-shield"></i> CS50’s Introduction to Cybersecurity – Harvard/edX (em andamento)</p>
+        <p><i class="fa-solid fa-globe"></i> Inglês: Estudo contínuo</p>
+        <p><i class="fa-solid fa-tower-broadcast"></i> Estudos práticos de redes e segurança sem fio em ambiente controlado</p>
     </div>
 
     <div class="card">
         <h2>Projetos</h2>
-        <p>Desenvolvimento de projetos de automação em python</p>
-        <p>Estudo ofesivo utilizando a ferramenta de laboratório ESP CYD-32</P>
-        <p>Estudos práticos em ambientes controlados, como TryHackMe, CTFs e laboratórios de segurança de redes.</p>
-        <p>Labs de redes e pentest</p>
+        <p><i class="fa-solid fa-robot"></i> Desenvolvimento de automações em Python</p>
+        <p><i class="fa-solid fa-store"></i> Criação de páginas web profissionais para comércios</p>
+        <p><i class="fa-solid fa-network-wired"></i> Laboratórios de redes e pentest (hands-on)</p>
+        <p><i class="fa-solid fa-lock"></i> Aplicação de boas práticas de desenvolvimento seguro</p>
     </div>
 
     <div class="card">
-    <h2>Sobre</h2>
-    <p>Estudante de Segurança da Informação com foco em <strong>Cybersecurity (Red Team)</strong>, atuando em projetos práticos de redes, pentest e segurança ofensiva.</p>
-    <p>Desenvolvo automacões em python, aplicando boas práticas de performance, segurança e design responsivo.</p>
-    <p>Exploro Linux e ferramentas de auditoria em laboratório, além de estudar protocolos de rede, vulnerabilidades e defesas.</p>
-    <p>Meu objetivo é evoluir para o lado ofensivo da segurança digital, construindo experiência real com hands-on, CTFs e labs.</p>
-    <p>Agindo sempre com ética e responsabilidade, dando sempre o melhor de todo o meu conhecimento!</p>
+        <h2>Sobre mim</h2>
+        <p>Sou estudante de TI em constante evolução, com foco em *segurança cibernética ofensiva (Red Team)* e *defesa de redes*.</p>
+        <p>Trabalho com *protocolos de rede, análise de vulnerabilidades, testes de invasão (Pentest ético)* e desenvolvimento web seguro.</p>
+        <p>Construo projetos reais para comércios locais, aplicando *desenvolvimento front-end, automação e princípios de segurança da informação*.</p>
+        <p>Pratico labs e CTFs em plataformas éticas como *TryHackMe*, além de ambientes isolados para estudo de redes e segurança sem fio.</p>
+        <p>Meu propósito é me tornar um profissional de *segurança de redes e Red Team*, atuando com ética, responsabilidade e prática constante.</p>
+        <p>Movido por desafios, aprendizado contínuo e construção de experiência real na área cyber.</p>
     </div>
-    
 </div>
 
 <script>
-    // Códigos caindo no fundo (verde)
-    const canvas = document.getElementById("code-bg");
+    const canvas = document.getElementById("matrix");
     const ctx = canvas.getContext("2d");
 
     function resize() {
@@ -184,13 +240,13 @@
     }
     resize();
 
-    const chars = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*!?";
-    const fontSize = 22;
+    const chars = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*!?<>/{}[]";
+    const fontSize = 18;
     const columns = canvas.width / fontSize;
     const drops = Array(Math.floor(columns)).fill(0);
 
     function draw() {
-        ctx.fillStyle = "rgba(0,0,0,0.05)";
+        ctx.fillStyle = "rgba(0,0,0,0.06)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "#00ff00";
         ctx.font = fontSize + "px monospace";
@@ -199,13 +255,13 @@
             const text = chars[Math.floor(Math.random() * chars.length)];
             ctx.fillText(text, i * fontSize, drops[i] * fontSize);
             drops[i]++;
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.97) {
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                 drops[i] = 0;
             }
         }
     }
 
-    setInterval(draw, 50);
+    setInterval(draw, 40);
     window.addEventListener("resize", resize);
 </script>
 
