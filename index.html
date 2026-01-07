@@ -4,175 +4,135 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gabriel – Portfólio</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
     body {
         margin: 0;
-        font-family: 'Poppins', sans-serif;
-        overflow: hidden;
+        font-family: monospace;
+        background: #000;
+        color: #00ff00;
+        overflow-y: auto;
+        height: 100vh;
     }
 
-    /* FUNDO ANIMADO */
-    #matrix {
+    /* Fundo com códigos passando */
+    #code-bg {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         z-index: -1;
-        opacity: 0.6;
+        opacity: 0.25;
     }
 
     .container {
-        background: linear-gradient(135deg, #00aaff, #0066ff, #001133);
-        min-height: 100vh;
-        color: white;
-        text-align: center;
-        padding: 60px 20px;
-        position: relative;
-        animation: bgMove 8s infinite alternate ease-in-out;
+        padding: 40px 20px;
+        animation: fadeIn 1.2s ease-in-out;
     }
 
-    @keyframes bgMove {
-        0% { background-position: left top; }
-        100% { background-position: right bottom; }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
 
-    /* FOTO */
     .photo {
-        width: 150px;
-        height: 150px;
+        width: 140px;
+        height: 140px;
         border-radius: 50%;
-        border: 4px solid #00eaff;
+        border: 3px solid #00ff00;
         object-fit: cover;
-        margin-bottom: 12px;
-        box-shadow: 0 0 30px #00eaff, 0 0 60px #0099ff;
-        animation: photoGlow 2s infinite alternate ease-in-out;
+        display: block;
+        margin: 0 auto 20px;
+        box-shadow: 0 0 15px #00ff00;
+        animation: glowPulse 2s infinite alternate;
     }
 
-    @keyframes photoGlow {
-        from { box-shadow: 0 0 20px #00eaff, 0 0 40px #0099ff; }
-        to { box-shadow: 0 0 35px #00ffff, 0 0 75px #00aaff; }
+    @keyframes glowPulse {
+        from { box-shadow: 0 0 10px #00ff00; }
+        to { box-shadow: 0 0 25px #00ff00, 0 0 40px #00aa00; }
     }
 
-    h1 {
-        margin: 5px 0;
-        font-size: 30px;
-        font-weight: 700;
-        animation: textFlicker 1.8s infinite alternate;
-    }
-
-    @keyframes textFlicker {
-        from { text-shadow: 0 0 5px #00aaff; }
-        to { text-shadow: 0 0 20px #00ffff, 0 0 40px #0066ff; }
+    h1, h2 {
+        text-align: center;
+        text-shadow: 0 0 8px #00ff00;
     }
 
     .card {
-        background: rgba(0, 170, 255, 0.15);
-        padding: 20px;
-        border-radius: 16px;
-        margin: 16px auto;
-        max-width: 400px;
-        backdrop-filter: blur(8px);
-        animation: cardEntrance 0.8s ease-out forwards, cardFloat 3s infinite alternate ease-in-out;
+        background: rgba(0, 255, 0, 0.07);
+        padding: 18px;
+        border-radius: 10px;
+        margin: 18px auto;
+        max-width: 420px;
+        border: 1px solid rgba(0, 255, 0, 0.2);
+        animation: slideUp 0.8s ease-out forwards;
         opacity: 0;
-        transform: translateY(30px);
-        border: 1px solid rgba(0, 255, 255, 0.3);
+        transform: translateY(25px);
     }
 
-    @keyframes cardEntrance {
+    @keyframes slideUp {
         to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes cardFloat {
-        from { transform: translateY(0px); }
-        to { transform: translateY(12px); }
+    .skills span {
+        display: inline-block;
+        background: rgba(0, 255, 0, 0.15);
+        padding: 8px 14px;
+        border-radius: 6px;
+        font-size: 14px;
+        margin: 6px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .skills span:hover {
+        transform: scale(1.1);
+        background: rgba(0, 255, 0, 0.3);
     }
 
     .btn {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
-        background: #00f2ff;
-        color: #001122;
-        padding: 14px;
-        border-radius: 30px;
+        gap: 8px;
+        background: #001100;
+        color: #00ff00;
+        padding: 12px;
+        border-radius: 6px;
         font-weight: 700;
         text-decoration: none;
-        margin: 12px auto;
+        margin: 10px auto;
         width: 90%;
-        max-width: 300px;
-        box-shadow: 0 0 10px #00f2ff, 0 0 25px #0099ff;
-        animation: btnPulse 1.5s infinite alternate;
+        max-width: 280px;
+        box-shadow: 0 0 12px #00ff00;
         transition: 0.2s;
     }
 
-    @keyframes btnPulse {
-        from { transform: scale(1); }
-        to { transform: scale(1.06); }
-    }
-
-    @keyframes btnPulse {
-        from { box-shadow: 0 0 10px #00f2ff; }
-        to { box-shadow: 0 0 20px #00ffff, 0 0 40px #0099ff; }
-    }
-
     .btn:hover {
-        transform: scale(1.1);
-        background: #00d9ff;
-    }
-
-    .skills span {
-        display: inline-block;
-        background: rgba(0, 255, 255, 0.25);
-        padding: 7px 15px;
-        border-radius: 20px;
-        font-size: 14px;
-        margin: 6px;
-        font-weight: 600;
-        animation: skillFloat 3s infinite alternate ease-in-out;
-    }
-
-    @keyframes skillFloat {
-        from { transform: translateY(0px); }
-        to { transform: translateY(10px); }
-    }
-
-    .logo {
-        width: 42px;
-        position: absolute;
-        opacity: 0.9;
-        filter: drop-shadow(0 0 8px #00ffff);
-        animation: logoFloat 5s infinite alternate ease-in-out;
-    }
-
-    @keyframes logoFloat {
-        from { transform: translateY(0px) rotate(0deg); }
-        to { transform: translateY(20px) rotate(8deg); }
+        transform: scale(1.07);
+        box-shadow: 0 0 18px #00ff00, 0 0 30px #00aa00;
     }
 </style>
 </head>
 <body>
 
-<canvas id="matrix"></canvas>
+<canvas id="code-bg"></canvas>
 
 <div class="container">
     <img src="https://github.com/hard10/lik-bio-portifolio/blob/main/fundo_trans.jpg?raw=true" class="photo" alt="Foto do Gabriel">
 
     <h1>Gabriel da Silva Santos</h1>
-    <p class="subtitle">Cybersecurity (Red Team) | TI & Web Dev</p>
+    <p style="text-align:center">Cybersecurity (Red Team) | TI & Web Dev</p>
 
     <div class="card">
         <h2>Contato</h2>
-        <a class="btn" href="https://wa.me/5511934578305"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-        <a class="btn" href="mailto:gabrielhard011@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
-        <a class="btn" href="https://www.linkedin.com/in/gabriel-silva-5b1129373"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+        <a class="btn" href="https://wa.me/5511934578305">📱 WhatsApp</a>
+        <a class="btn" href="mailto:gabrielhard011@gmail.com">✉️ Email</a>
+        <a class="btn" href="https://www.linkedin.com/in/gabriel-silva-5b1129373">🔗 LinkedIn</a>
     </div>
 
     <div class="card">
         <h2>Skills</h2>
-        <div class="skills">
+        <div class="skills" style="text-align:center">
             <span>Redes</span>
             <span>Pentest</span>
             <span>Linux</span>
@@ -185,48 +145,61 @@
         </div>
     </div>
 
-    <!-- LOGOS -->
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="logo" style="top: 15%; left: 6%;">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="logo" style="bottom: 20%; right: 7%;">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="logo" style="bottom: 5%; left: 8%;">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="logo" style="top: 50%; right: 5%;">
+    <div class="card">
+        <h2>Formação & Estudos</h2>
+        <p>ADS – Análise e Desenvolvimento de Software (em andamento)</p>
+        <p>Google Cybersecurity Professional Certificate</p>
+        <p>CS50’s Introduction to Cybersecurity – Harvard/edX (em andamento)</p>
+        <p>Labs práticos com Linux, redes e ESP32</p>
+    </div>
+
+    <div class="card">
+        <h2>Projetos</h2>
+        <p>Desenvolvimento de páginas para comércios</p>
+        <p>Labs de redes e pentest</p>
+    </div>
+
+    <div class="card">
+        <h2>Sobre</h2>
+        <p>Controlador de Acesso em condomínio | Caminhão caçamba próprio | CNH A e B</p>
+        <p>Guararema, São Paulo – Brasil</p>
+    </div>
 </div>
 
 <script>
-    /* MATRIX / CÓDIGOS CAINDO */
-    const canvas = document.getElementById("matrix");
+    // Códigos caindo no fundo (verde)
+    const canvas = document.getElementById("code-bg");
     const ctx = canvas.getContext("2d");
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resize();
 
-    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*!?";
-    const fontSize = 20;
+    const chars = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*!?";
+    const fontSize = 22;
     const columns = canvas.width / fontSize;
-    const drops = Array(Math.floor(columns)).fill(1);
+    const drops = Array(Math.floor(columns)).fill(0);
 
-    function drawMatrix() {
-        ctx.fillStyle = "rgba(0,0,20,0.05)";
+    function draw() {
+        ctx.fillStyle = "rgba(0,0,0,0.05)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "#00f2ff";
+        ctx.fillStyle = "#00ff00";
         ctx.font = fontSize + "px monospace";
 
         for (let i = 0; i < drops.length; i++) {
-            const text = letters[Math.floor(Math.random() * letters.length)];
+            const text = chars[Math.floor(Math.random() * chars.length)];
             ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.96) {
+            drops[i]++;
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.97) {
                 drops[i] = 0;
             }
-            drops[i]++;
         }
     }
 
-    setInterval(drawMatrix, 50);
-
-    window.addEventListener("resize", () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    });
+    setInterval(draw, 50);
+    window.addEventListener("resize", resize);
 </script>
 
 </body>
